@@ -1,5 +1,9 @@
 from pathlib import Path
 import os
+import django_heroku
+import dj_database_url
+from decouple import config
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -8,8 +12,6 @@ SECRET_KEY = '24skmzl_m6msedf+qhalny&0&4ryxvz!(mxm5@2c%#)&+i7$19'
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-
-
 
 INSTALLED_APPS = [
     'chat.apps.ChatConfig',
@@ -58,8 +60,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'char_room.wsgi.application'
 
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -70,9 +70,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
-
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -89,8 +86,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -101,19 +96,15 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
-
-
-
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+django_heroku.settings(locals())
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
