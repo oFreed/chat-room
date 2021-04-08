@@ -1,0 +1,11 @@
+{% if email_error %}
+Enter valid Email!
+{% elif length_error %}
+Message text can't be empty or bigger than 100!
+{% elif username_error %}
+You can't post message without Username
+{% endif %}
+<form action="{% url 'chat:main_page' %}">
+    {% csrf_token %}
+    <input type="submit" value="Try again">
+</form>
