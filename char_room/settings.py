@@ -1,15 +1,12 @@
 from pathlib import Path
-import os
-import django_heroku
-import dj_database_url
-from decouple import config
+
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = '24skmzl_m6msedf+qhalny&0&4ryxvz!(mxm5@2c%#)&+i7$19'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -26,7 +23,6 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'drf_yasg',
     'djoser',
-    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -37,7 +33,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'char_room.urls'
@@ -96,18 +91,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-db_from_env = dj_database_url.config()
-DATABASE['default'].update(db_from_env)
-
-django_heroku.settings(locals())
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (

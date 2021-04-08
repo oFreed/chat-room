@@ -1,1 +1,1 @@
-web: gunicorn chat_room.wsgi --log-file -
+web: gunicorn char_room.wsgi
