@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = '24skmzl_m6msedf+qhalny&0&4ryxvz!(mxm5@2c%#)&+i7$19'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'drf_yasg',
     'djoser',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -34,6 +35,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'char_room.urls'
@@ -101,13 +103,17 @@ USE_TZ = True
 
 
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
