@@ -1,1 +1,0 @@
-web: gunicorn char_room.wsgi
