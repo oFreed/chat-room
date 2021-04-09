@@ -1,7 +1,0 @@
-<h4>Your message:</h4>
-<h3>{{new.text}}</h3>
-<h4>was added successfully.</h4>
-<form action="{% url 'chat:main_page' %}">
-    {% csrf_token %}
-    <input type="submit" value="Back to all message">
-</form>
