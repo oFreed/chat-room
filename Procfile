@@ -1,0 +1,1 @@
+web: gunicorn char_room.wsgi --log-file -
